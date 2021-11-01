@@ -1,0 +1,22 @@
+.chip-style {
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	background-color: rgb(119, 120, 112);
+	font-size: 28px;
+	font-weight: 900;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 5px solid rgba(207, 150, 45, 0.8);
+	box-shadow: 3px 3px 7px black;
+	transition: all 0.3s ease-in-out;
+}
+.chip-style:hover {
+	transform: translateY(-5px);
+	box-shadow: 5px 5px 9px black;
+}
+.chip-style:active {
+	transform: translateY(3px);
+}
