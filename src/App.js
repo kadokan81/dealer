@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { useEffect, useReducer } from 'react';
-import { useState } from 'react/cjs/react.development';
+import { useEffect, useReducer, useState } from 'react';
+
 import './App.css';
 import ChipAmount from './components/chipAmount/chipAmount';
 import LayoutComponent from './layout/LayoutComponent';
@@ -77,7 +77,7 @@ function reducer(state, action) {
 const App = () => {
 	const [state, dispatch] = useReducer(reducer, initialState);
 
-	const [maxAmount, setMAxAmount] = useState();
+	const [maxAmount, setMAxAmount] = useState(3);
 
 	const runOnBlur = (e) => {
 		setMAxAmount(parseInt(e.target.value));

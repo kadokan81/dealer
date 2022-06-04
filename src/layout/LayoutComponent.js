@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { useContext, useEffect, useState } from 'react/cjs/react.development';
+import React, { useRef, useContext, useEffect, useState } from 'react';
+
 import StateContext from '../StateContext';
 import SumContext from '../SumContext';
 import './LayoutComponent.css';
