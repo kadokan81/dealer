@@ -8,7 +8,10 @@ const LayoutComponent = ({ children }) => {
 	const [totalSum, settotalSum] = useState(0);
 	const { state } = useContext(StateContext);
 	const { dispatch } = useContext(SumContext);
+
+	const [chipvalue, serChipValue] = useState(2);
 	useEffect(() => {
+		console.log('state', state);
 		setGessingNumber('');
 		setByfiveResult('');
 		setBytwentyfiveResult('');
@@ -24,7 +27,8 @@ const LayoutComponent = ({ children }) => {
 			}
 		}, 0);
 		settotalSum(sumOfAll);
-	}, [state]);
+		console.log('totalSum', sumOfAll);
+	}, [state, totalSum]);
 
 	const [gessingNumber, setGessingNumber] = useState('');
 
@@ -46,7 +50,7 @@ const LayoutComponent = ({ children }) => {
 		return (
 			parseInt(gessingNumber, 10) === totalSum &&
 			parseInt(byfiveResult, 10) === totalSum * 5 &&
-			parseInt(bytventyfiveResult, 10) === totalSum * 25
+			parseInt(bytventyfiveResult, 10) === totalSum * chipvalue
 		);
 	};
 	return (
@@ -152,7 +156,17 @@ const LayoutComponent = ({ children }) => {
 						flexDirection: 'column',
 						alignItems: 'center',
 					}}>
-					<label>Result * 25</label>
+					<label>
+						Result *
+						<select
+							onChange={(e) => {
+								serChipValue(e.target.value);
+							}}>
+							<option value={2}>2</option>
+							<option value={5}>5</option>
+							<option value={25}>25</option>
+						</select>
+					</label>
 					<input
 						ref={byTwentyFiveRef}
 						type='number'
@@ -165,16 +179,21 @@ const LayoutComponent = ({ children }) => {
 							width: '150px',
 							marginLeft: '25px',
 						}}
-						placeholder='by 25 $'
+						placeholder={`by $ ${chipvalue}`}
 						value={bytventyfiveResult}
 						onFocus={(e) => (e.target.placeholder = '')}
 						onBlur={(e) =>
-							onBlureHAndler(e, 'by 25 $ ???', 25, bytventyfiveResult)
+							onBlureHAndler(
+								e,
+								`by $ ${chipvalue}`,
+								chipvalue,
+								bytventyfiveResult
+							)
 						}
 						onChange={(e) => setBytwentyfiveResult(e.target.value)}
 						onKeyPress={(e) => {
 							if (e.key === 'Enter') {
-								onBlureHAndler(e, 'by 5 $ ???', 25, bytventyfiveResult);
+								onBlureHAndler(e, 'by 5 $ ???', chipvalue, bytventyfiveResult);
 								checkIfAllCorrect();
 							}
 						}}

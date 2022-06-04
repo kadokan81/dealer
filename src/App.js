@@ -51,7 +51,7 @@ function reducer(state, action) {
 		case 'set-max-amount':
 			return {
 				...state,
-				maxAmount: action.payload,
+				maxAmount: action.payload ? action.payload : initialState.maxAmount,
 				count: 0,
 				res: [],
 				reload: !state.reload,
